@@ -1,4 +1,4 @@
-<div align=center><img src="https://github.com/ShuXingYu94/Primer-picker/blob/main/primer_picker_cache/Icon/black%20on%20white.png" height="330px" /></div>
+<div align=center><img src="https://github.com/ShuXingYu94/Primer-picker/blob/master/Icon/black%20on%20white.png" height="330px" /></div>
 
 # Primer-picker
 
