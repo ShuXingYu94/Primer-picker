@@ -1,0 +1,7 @@
+streamlit
+biopython
+primer3-py
+pandas
+numpy
+dna_features_viewer
+matplotlib
