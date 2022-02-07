@@ -65,7 +65,7 @@ def blastn(query_address: str, db_address: str, out_address1: str = '', evalue=0
                     if a == '|':
                         sign += '|'
                     else:
-                        sign += ' '
+                        sign += '-'
                 out_align = show_align(hsp.query, hsp.sbjct, sign)
                 message += (
                     '  \n >> **sequence**: {0}  \n >> **length**: {1}  \n >> **identity**: {2} out of {3}  \n >> **e-value**: {4}  '
