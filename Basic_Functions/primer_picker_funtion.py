@@ -2,8 +2,6 @@ from os import path,getcwd
 from Bio import SeqIO,Entrez
 import primer3
 from pandas import DataFrame,__version__
-from Bio.Blast.Applications import NcbiblastnCommandline
-from Bio.Blast import NCBIXML
 import sys
 import numpy as np
 import streamlit as st
@@ -39,8 +37,9 @@ def readFASTA(FASTA):
     Index = []
     Seq = []
     n = 0
+    ls = FASTA.split('\n')
     txt = ''
-    for i in FASTA:
+    for i in ls:
         if '>' in i and n == 0:
             txt = ''
             Index.append(i.replace('>', '').replace('\n', ''))  # replace('\n','')
@@ -116,42 +115,6 @@ def extract_pairs(primer3_result_df):
         primer_list.append([f, r])
     return primer_list
 
-
-def blastn(query_address: str, db_address: str, out_address1: str = '', evalue=0.001, identity=18, task='blastn',
-           dust='yes'):
-    blastn_cline = NcbiblastnCommandline(query=query_address, db=db_address, evalue=evalue, outfmt=5, out=out_address1,
-                                         task=task, dust=dust)
-    stout, stderr = blastn_cline()
-    result_handle = open(out_address1)
-    blast_record = NCBIXML.read(result_handle)
-    e_value_thresh = evalue  # set E_value or other parameter and judge if exist
-    identities = identity  # set identity for alignments,for primer design:length of primer-2 is recommended
-    count = 0  # count number of blast hits
-    name_list = []
-    message = ''
-    for alignment in blast_record.alignments:
-        for hsp in alignment.hsps:
-            if hsp.expect <= e_value_thresh and hsp.identities >= identities:
-                count += 1
-                name_list.append(alignment.title)
-                # 解决｜的问题
-                sign = ''
-                for a in hsp.match[0:75]:
-                    if a == '|':
-                        sign += '|'
-                    else:
-                        sign += ' '
-                message += (
-                    '  \n >> **sequence**: {0}  \n >> **length**: {1}  \n >> **identity**: {2}  \n >> **e-value**: {3}  '
-                    '\n >>  `{4}`  '
-                    '\n >>  `{5}`  '
-                    '\n >>  `{6} `  \n >> '.format(
-                        alignment.title, alignment.length, hsp.identities, hsp.expect, hsp.query[0:75] + '...',
-                                                                                       sign + '...',
-                                                                                       hsp.sbjct[0:75] + '...'))
-    message += ' **{} similar sequence found.**  \n'.format(str(count))
-    # st.write(message)
-    return count, name_list, message
 
 @st.cache
 def set_args(job_name, target_seq, INCLUDED_REGION, state_target_region, TARGET_REGION, state_exclude_region,

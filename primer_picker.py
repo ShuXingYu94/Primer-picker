@@ -1,10 +1,12 @@
-import streamlit as st
-from Basic_Functions.Primer_picker_funtion import *
+# import streamlit as st
+from Basic_Functions.primer_picker_funtion import *
+from Basic_Functions.blast_function import blastn
 # from dna_features_viewer import GraphicFeature, GraphicRecord
-from os import path,remove
+from os import path, remove
+
+
 # from Bio.Seq import Seq
 # import matplotlib.pyplot as plt
-
 
 
 def primer_picker_single_main():

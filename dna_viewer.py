@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from Bio.Seq import Seq
 import streamlit as st
 from numpy import arange
-from Basic_Functions.Primer_picker_funtion import *
+from Basic_Functions.primer_picker_funtion import *
 
 def convert_rec(x):
     if isinstance(x, list):

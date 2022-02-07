@@ -17,6 +17,10 @@ icon = Image.open(r'./primer_picker_cache/Icon/black on white.png')
 # report = get_system_report()
 
 def general_main(icon):
+    st.markdown(""" <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    </style> """, unsafe_allow_html=True)
     st.title('Primer Picker and Specificity Check')
     st.sidebar.image(icon, use_column_width=True)
     st.sidebar.markdown('''[![ShuXingYu94 - Primer-picker](https://img.shields.io/static/v1?label=ShuXingYu94&message=Primer-picker&color=green&logo=github)](https://github.com/ShuXingYu94/Primer-picker "Go to GitHub repo")
