@@ -55,50 +55,51 @@ def read_primer(in_put):
 
 
 def dna_viewer():
-    sample_seq = '''>sample_seq_1
-        ggggtcttcccccaagaattggtagatgtggttttggtgccggccgacatgtctatagcttgtgagctctcgaatcccaatttaaagaagacaaaagcagaaaaacggatacca
-        accaagattctgcttatccgggttttatgtggcttagttgttctctggctctgcttaagcttaagcttaggcttcttatgtatatgcaagaagaaagaggctgctgctgctgctga
-        tgactcttcttcttctgctaaagggatgttgttcaggaatcagagcagaagtgagattgatgctatgctttctctcttctttgattcaaatcaggtttcccactacttctttcttc
-        tttttattattgtttgacaatttaatttacttaaagcttttgaataattggagaacaggtaacatcttttgaatgtcgcaaggagaatggtggtattacatgttccttgtcaacac
-        gttccgagaaaggagacgaggaggaggaggaggctaagagacatgttgttgcagaggttatgtcatcatctgagaatgaagaagaaggaggtgtgctgcatcaggttgtgttgttt
-        tatgtaatgaacaaatggcattggtggttggtcctttgtgtactactagtgggcggcggccgtgtgatatttgtaagaaaagaagtttcttctttagtacaagacaagcagcagca
-        gcagcagcaatgcaaaacagctgggaagtggaggaagaacatgcttctactcggcatcatcgcgggagtttctttgtctgttttatggttttgggataccaacgagaagatcttgt
-        tccaaaggaaagagacgttaaccaacatgtgtgaggaacgagctcgggtgttgcaggaccagttcaatgttagcatgaaccatgtccacgccttgtccatcctcgtctctaccttt
-        caccatggcaaaaccccttctgccattgatcaggtaaactaagagtccgaatggtaacatgtggtgcggttctaatagtaacaaaatcgtatagatacatgtgtaaatctagagat
-        tttttaatgttaattgcggtgcgattctaatagtaaaaaaaagtatagatacatgtgtatatctagagatttttgttattgttaactacgatggtgttttaatagtaacaaaaacg
-        tatagatacatatgtatatttagagatttttgttaatgttaattgcggcgcggttctaatagtaaccaaaaagtatatatacatgtgtatatctagagatttttttaactgcggtg
-        ctgttccaatagtaacaaaaacgtatagatacatgtgtaaatctagagatttttgttaatgttaattgtggtgcagttctaatagtaacaaaaacgtatagatacatgtgtatatc
-        taaagatttttgttaatgttaattgtggtgcggttccaatagtaacaaaaacgtatagatacatgtgtaaatctagagatttttgttaatgttaattgtggtgcggttctatagta
-        acaaaaacgtatagatacatgtgtatatctagagatttttgttaatgctaattgtgctgcggtgcggttagaaataaaattccattcttaagatttttaactgttgattttttttt
-        tttcag'''
-    fasta = st.text_area('Input fasta sequence.', sample_seq, height=250)
+    with st.form('main'):
+        sample_seq = '''>sample_seq_1
+            ggggtcttcccccaagaattggtagatgtggttttggtgccggccgacatgtctatagcttgtgagctctcgaatcccaatttaaagaagacaaaagcagaaaaacggatacca
+            accaagattctgcttatccgggttttatgtggcttagttgttctctggctctgcttaagcttaagcttaggcttcttatgtatatgcaagaagaaagaggctgctgctgctgctga
+            tgactcttcttcttctgctaaagggatgttgttcaggaatcagagcagaagtgagattgatgctatgctttctctcttctttgattcaaatcaggtttcccactacttctttcttc
+            tttttattattgtttgacaatttaatttacttaaagcttttgaataattggagaacaggtaacatcttttgaatgtcgcaaggagaatggtggtattacatgttccttgtcaacac
+            gttccgagaaaggagacgaggaggaggaggaggctaagagacatgttgttgcagaggttatgtcatcatctgagaatgaagaagaaggaggtgtgctgcatcaggttgtgttgttt
+            tatgtaatgaacaaatggcattggtggttggtcctttgtgtactactagtgggcggcggccgtgtgatatttgtaagaaaagaagtttcttctttagtacaagacaagcagcagca
+            gcagcagcaatgcaaaacagctgggaagtggaggaagaacatgcttctactcggcatcatcgcgggagtttctttgtctgttttatggttttgggataccaacgagaagatcttgt
+            tccaaaggaaagagacgttaaccaacatgtgtgaggaacgagctcgggtgttgcaggaccagttcaatgttagcatgaaccatgtccacgccttgtccatcctcgtctctaccttt
+            caccatggcaaaaccccttctgccattgatcaggtaaactaagagtccgaatggtaacatgtggtgcggttctaatagtaacaaaatcgtatagatacatgtgtaaatctagagat
+            tttttaatgttaattgcggtgcgattctaatagtaaaaaaaagtatagatacatgtgtatatctagagatttttgttattgttaactacgatggtgttttaatagtaacaaaaacg
+            tatagatacatatgtatatttagagatttttgttaatgttaattgcggcgcggttctaatagtaaccaaaaagtatatatacatgtgtatatctagagatttttttaactgcggtg
+            ctgttccaatagtaacaaaaacgtatagatacatgtgtaaatctagagatttttgttaatgttaattgtggtgcagttctaatagtaacaaaaacgtatagatacatgtgtatatc
+            taaagatttttgttaatgttaattgtggtgcggttccaatagtaacaaaaacgtatagatacatgtgtaaatctagagatttttgttaatgttaattgtggtgcggttctatagta
+            acaaaaacgtatagatacatgtgtatatctagagatttttgttaatgctaattgtgctgcggtgcggttagaaataaaattccattcttaagatttttaactgttgattttttttt
+            tttcag'''
+        fasta = st.text_area('Input fasta sequence.', sample_seq, height=250)
 
-    raw_seq, index = readFASTA(fasta)
-    target_seq = seq_clean(raw_seq[0])
-    # input exon,promoter,primer_pair
-    exon_in = st.text_input('Please enter exon area:', value='300 : 600 , 900 : 1300', key='exon')
-    promoter_in = st.text_input('Please enter promoter area:', value='10 : 250', key='promoter')
-    primer_pair_in = st.text_input('Please enter promoter area:',
-                                value='200:220, 380:400,900:920,1080:1100',
-                                key='primer')
-    primer_pair = {'pair1': [[200, 220], [380, 400]], 'pair2': [[900, 920], [1080, 1100]]}
+        raw_seq, index = readFASTA(fasta)
+        target_seq = seq_clean(raw_seq[0])
+        # input exon,promoter,primer_pair
+        exon_in = st.text_input('Please enter exon area:', value='300 : 600 , 900 : 1300', key='exon')
+        promoter_in = st.text_input('Please enter promoter area:', value='10 : 250', key='promoter')
+        primer_pair_in = st.text_input('Please enter promoter area:',
+                                       value='200:220, 380:400,900:920,1080:1100',
+                                       key='primer')
+        primer_pair = {'pair1': [[200, 220], [380, 400]], 'pair2': [[900, 920], [1080, 1100]]}
 
-    if st.button('Draw gene'):
-        exon=read_exon(exon_in)
-        promoter=read_promoter(promoter_in)
-        # primer_pair=read_primer(primer_pair_in)
-        fig, (ax1, ax2) = plt.subplots(
-            2, 1, figsize=(20, 3), sharex=True, gridspec_kw={"height_ratios": [4, 1]}
-        )
-        features = draw(exon, promoter, primer_pair)
-        record = GraphicRecord(sequence_length=1600, features=features)
-        record.plot(figure_width=20, ax=ax1)
-        # PLOT THE LOCAL GC CONTENT (we use 50bp windows)
-        record = Seq(target_seq)
-        gc = lambda s: 100.0 * len([c for c in s if c in "GC"]) / 50
-        xx = arange(len(record) - 50)
-        yy = [gc(record[x: x + 50]) for x in xx]
-        ax2.fill_between(xx + 25, yy, alpha=0.3)
-        ax2.set_ylim(bottom=0)
-        ax2.set_ylabel("GC(%)")
-        st.pyplot(fig)
+        if st.form_submit_button('Draw gene'):
+            exon = read_exon(exon_in)
+            promoter = read_promoter(promoter_in)
+            # primer_pair=read_primer(primer_pair_in)
+            fig, (ax1, ax2) = plt.subplots(
+                2, 1, figsize=(20, 3), sharex=True, gridspec_kw={"height_ratios": [4, 1]}
+            )
+            features = draw(exon, promoter, primer_pair)
+            record = GraphicRecord(sequence_length=1600, features=features)
+            record.plot(figure_width=20, ax=ax1)
+            # PLOT THE LOCAL GC CONTENT (we use 50bp windows)
+            record = Seq(target_seq)
+            gc = lambda s: 100.0 * len([c for c in s if c in "GC"]) / 50
+            xx = arange(len(record) - 50)
+            yy = [gc(record[x: x + 50]) for x in xx]
+            ax2.fill_between(xx + 25, yy, alpha=0.3)
+            ax2.set_ylim(bottom=0)
+            ax2.set_ylabel("GC(%)")
+            st.pyplot(fig)
