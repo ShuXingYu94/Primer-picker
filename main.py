@@ -9,13 +9,12 @@ APP_TITLE = "Primer Picker"
 # Set the configs
 st.set_page_config(
     page_title=APP_TITLE,
-    # page_icon=Image.open(r'./primer_picker_cache/Icon/word_P.ico'),
+    page_icon=Image.open(r'./primer_picker_cache/Icon/word_P.ico'),
     layout="wide",
     initial_sidebar_state="auto",
 )
 
-
-# icon = Image.open(r'./primer_picker_cache/Icon/black on white.png')
+icon = Image.open(r'./primer_picker_cache/Icon/black on white.png')
 # report = get_system_report()
 
 def general_main(icon):
